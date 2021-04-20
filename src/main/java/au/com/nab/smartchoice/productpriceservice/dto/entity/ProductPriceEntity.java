@@ -24,9 +24,11 @@ public class ProductPriceEntity {
     @Column(name = "promotion")
     private String promotion;
 
+    @Column(name = "location")
+    private String location;
+
     @Column(name = "synced_at")
     private LocalDateTime syncedAt;
-
 
 
 }
