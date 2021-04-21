@@ -4,21 +4,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class TikiGetProductPriceHttpReception {
+public class LazadaGetProductPriceHttpReception {
 
-    @JsonProperty("product_type_id")
-    private String productTypeId;
+    @JsonProperty("itemId")
+    private String itemId;
 
-    @JsonProperty("current_price")
-    private Long currentPrice;
+    @JsonProperty("price")
+    private Long price;
 
-    @JsonProperty("market_price")
-    private Long marketPrice;
+    @JsonProperty("originalPrice")
+    private Long originalPrice;
 
     @JsonProperty("promotion")
     private String promotion;
 
     @JsonProperty("location")
     private String location;
-
 }

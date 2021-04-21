@@ -1,6 +1,6 @@
 package au.com.nab.smartchoice.productpriceservice.input.scheduler;
 
-import au.com.nab.smartchoice.productpriceservice.feignclient.ProductServiceClient;
+import au.com.nab.smartchoice.productpriceservice.dto.other.PartnerEnum;
 import au.com.nab.smartchoice.productpriceservice.service.ProductPriceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +14,18 @@ public class ProductPriceTikiSyncScheduler {
 
     private final ProductPriceService productPriceService;
 
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 30000)
     public void syncProductTiki() {
-        productPriceService.syncProductPriceTiki();
+        productPriceService.syncProductPrice(PartnerEnum.TIKI);
+    }
+
+    @Scheduled(fixedRate = 30000)
+    public void syncProductLazada() {
+        productPriceService.syncProductPrice(PartnerEnum.LAZADA);
+    }
+
+    @Scheduled(fixedRate = 30000)
+    public void syncProductShopee() {
+        productPriceService.syncProductPrice(PartnerEnum.SHOPEE);
     }
 }

@@ -5,8 +5,8 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ProductPriceModel {
-    private String productId;
+public class ShopeeProductPriceModel {
+    private String productName;
     private String partner;
     private Long price;
     private Long basePrice;

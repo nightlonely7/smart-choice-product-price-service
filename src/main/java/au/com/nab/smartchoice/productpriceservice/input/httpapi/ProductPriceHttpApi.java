@@ -1,6 +1,6 @@
 package au.com.nab.smartchoice.productpriceservice.input.httpapi;
 
-import au.com.nab.smartchoice.productpriceservice.dto.httpresponse.ProductPriceHttpResponse;
+import au.com.nab.smartchoice.productpriceservice.dto.mapper.ProductPriceMapper;
 import au.com.nab.smartchoice.productpriceservice.service.ProductPriceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,13 +17,12 @@ import java.util.stream.Collectors;
 public class ProductPriceHttpApi {
 
     private final ProductPriceService productPriceService;
+    private final ProductPriceMapper productPriceMapper;
 
     @GetMapping
     public ResponseEntity<?> getProductPriceList(@RequestParam("product-id") String productId) {
-        return ResponseEntity.ok(productPriceService.getProductPriceList(productId).stream().map(productPriceModel -> {
-            ProductPriceHttpResponse productPriceHttpResponse = new ProductPriceHttpResponse();
-            productPriceHttpResponse.setProductId(productPriceModel.getProductId());
-            return productPriceHttpResponse;
-        }).collect(Collectors.toList()));
+        return ResponseEntity.ok(productPriceService.getProductPriceList(productId).stream()
+                .map(productPriceMapper::modelToResponse)
+                .collect(Collectors.toList()));
     }
 }

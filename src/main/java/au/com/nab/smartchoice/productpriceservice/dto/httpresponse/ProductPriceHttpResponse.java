@@ -11,6 +11,9 @@ public class ProductPriceHttpResponse {
     @JsonProperty("product_id")
     private String productId;
 
+    @JsonProperty("partner")
+    private String partner;
+
     @JsonProperty("price")
     private Long price;
 
