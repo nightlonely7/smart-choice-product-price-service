@@ -4,6 +4,7 @@ import au.com.nab.smartchoice.productpriceservice.dto.entity.ProductPriceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.util.Streamable;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ProductPriceRepository extends JpaRepository<ProductPriceEntity, UUID> {

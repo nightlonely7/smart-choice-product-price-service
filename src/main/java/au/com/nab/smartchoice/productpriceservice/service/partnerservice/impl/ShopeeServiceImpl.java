@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service("shopeeService")
 @RequiredArgsConstructor
 @Slf4j
 public class ShopeeServiceImpl implements ShopeeService {

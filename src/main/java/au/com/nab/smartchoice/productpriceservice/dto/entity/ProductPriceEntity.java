@@ -3,6 +3,7 @@ package au.com.nab.smartchoice.productpriceservice.dto.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.data.redis.core.RedisHash;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,9 @@ public class ProductPriceEntity extends BaseEntity {
 
     @Column(name = "product_id")
     private String productId;
+
+    @Column(name = "partner")
+    private String partner;
 
     @Column(name = "price")
     private Long price;
