@@ -1,16 +1,20 @@
 package au.com.nab.smartchoice.productpriceservice.dto.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Table(name = "product_price")
-public class ProductPriceEntity {
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+public class ProductPriceEntity extends BaseEntity {
 
     @Column(name = "product_id")
     private String productId;
