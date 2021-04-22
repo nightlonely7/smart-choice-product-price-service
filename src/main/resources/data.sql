@@ -1,0 +1,1 @@
+insert into tiki_product_mapping(id, product_id, tiki_product_type_id) values (random_uuid(), '1', 'tiki1');

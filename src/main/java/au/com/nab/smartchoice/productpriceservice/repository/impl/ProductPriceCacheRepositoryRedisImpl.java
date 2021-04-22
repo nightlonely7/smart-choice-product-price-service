@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 public class ProductPriceCacheRepositoryRedisImpl implements ProductPriceCacheRepository {
 
-    private static final String PRODUCT_PRICE_HASH = "PRODUCT_PRICE_HASH";
+    private static final String PRODUCT_PRICE_HASH = "PRODUCT_PRICE";
 
     private final StringRedisTemplate stringRedisTemplate;
     private final ObjectMapper objectMapper;

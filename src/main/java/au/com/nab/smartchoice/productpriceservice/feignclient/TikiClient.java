@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(contextId = "tiki-client", name = "tiki-client", path = "/")
+@FeignClient(contextId = "tiki-client", name = "tiki-client", url = "https://fd9f7ff2-cc9b-4a41-9eef-a1c991e9a390.mock.pstmn.io")
 public interface TikiClient {
 
     @GetMapping("/products")

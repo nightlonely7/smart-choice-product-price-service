@@ -13,7 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import static java.util.function.Predicate.not;
 
 @Service
 @RequiredArgsConstructor
@@ -43,11 +46,13 @@ public class ProductPriceServiceImpl implements ProductPriceService {
         var partnerService = partnerServiceState.getPartnerService(partnerEnum);
 
         List<String> synchronizableProductIdList = productServiceClientService.getSynchronizableProductIdList();
-        var productPriceModelListStream = synchronizableProductIdList.stream()
-                .map(partnerService::getProductPrice);
-        productPriceModelListStream.map(productPriceMapper::modelListToEntityList)
+        var productPriceModelListList = synchronizableProductIdList.stream()
+                .map(partnerService::getProductPrice).filter(not(List::isEmpty)).collect(Collectors.toList());
+        System.out.println(productPriceModelListList.size());
+        productPriceModelListList.stream().map(e -> e.get(0).getProductId()).forEach(productPriceRepository::deleteAllByProductId);
+        productPriceModelListList.stream().map(productPriceMapper::modelListToEntityList)
                 .forEach(productPriceRepository::saveAll);
-        productPriceModelListStream.map(productPriceMapper::modelListToCacheEntityList)
+        productPriceModelListList.stream().map(productPriceMapper::modelListToCacheEntityList)
                 .forEach(productPriceCacheRepository::saveAll);
     }
 }

@@ -9,6 +9,6 @@ import java.util.List;
 @FeignClient(contextId = "product-service", name = "product-service", url = "localhost:8080")
 public interface ProductServiceClient {
 
-    @GetMapping
+    @GetMapping("/products/synchronizable")
     ResponseEntity<List<String>> getSynchronizableProductId();
 }
