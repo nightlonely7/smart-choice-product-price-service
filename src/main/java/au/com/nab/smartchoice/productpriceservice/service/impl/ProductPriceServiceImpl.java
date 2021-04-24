@@ -12,8 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.util.function.Predicate.not;
@@ -41,6 +41,7 @@ public class ProductPriceServiceImpl implements ProductPriceService {
     }
 
     @Override
+    @Transactional
     public void syncProductPrice(PartnerEnum partnerEnum) {
 
         var partnerService = partnerServiceState.getPartnerService(partnerEnum);
@@ -48,7 +49,6 @@ public class ProductPriceServiceImpl implements ProductPriceService {
         List<String> synchronizableProductIdList = productServiceClientService.getSynchronizableProductIdList();
         var productPriceModelListList = synchronizableProductIdList.stream()
                 .map(partnerService::getProductPrice).filter(not(List::isEmpty)).collect(Collectors.toList());
-        System.out.println(productPriceModelListList.size());
         productPriceModelListList.stream().map(e -> e.get(0).getProductId()).forEach(productPriceRepository::deleteAllByProductId);
         productPriceModelListList.stream().map(productPriceMapper::modelListToEntityList)
                 .forEach(productPriceRepository::saveAll);

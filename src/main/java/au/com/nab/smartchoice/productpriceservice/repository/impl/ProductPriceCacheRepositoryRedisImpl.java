@@ -1,12 +1,9 @@
 package au.com.nab.smartchoice.productpriceservice.repository.impl;
 
 import au.com.nab.smartchoice.productpriceservice.dto.entity.ProductPriceCacheEntity;
-import au.com.nab.smartchoice.productpriceservice.dto.entity.ProductPriceEntity;
-import au.com.nab.smartchoice.productpriceservice.dto.mapper.ProductPriceMapper;
 import au.com.nab.smartchoice.productpriceservice.repository.ProductPriceCacheRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -35,7 +32,7 @@ public class ProductPriceCacheRepositoryRedisImpl implements ProductPriceCacheRe
         List<ProductPriceCacheEntity> productPriceEntityList = null;
         try {
             productPriceEntityList = objectMapper.readValue(productPriceCacheListStr,
-                    objectMapper.getTypeFactory().constructArrayType(ProductPriceCacheEntity.class));
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, ProductPriceCacheEntity.class));
         } catch (JsonProcessingException jsonProcessingException) {
             jsonProcessingException.printStackTrace();
         }

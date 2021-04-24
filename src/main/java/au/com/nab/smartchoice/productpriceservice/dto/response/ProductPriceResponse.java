@@ -1,4 +1,4 @@
-package au.com.nab.smartchoice.productpriceservice.dto.httpresponse;
+package au.com.nab.smartchoice.productpriceservice.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class ProductPriceHttpResponse {
+public class ProductPriceResponse {
 
     @JsonProperty("product_id")
     private String productId;

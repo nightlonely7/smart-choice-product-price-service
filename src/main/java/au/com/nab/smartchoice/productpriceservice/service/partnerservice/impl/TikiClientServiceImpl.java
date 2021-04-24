@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,10 @@ public class TikiClientServiceImpl implements TikiClientService {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setBasicAuth("username", "password");
         ResponseEntity<List<TikiGetProductPriceHttpReception>> responseEntity = tikiClient.getProduct(httpHeaders, productId);
+        var getProductPriceHttpReceptionList = responseEntity.getBody();
+        if (getProductPriceHttpReceptionList == null || getProductPriceHttpReceptionList.isEmpty()) {
+            return Collections.emptyList();
+        }
         return responseEntity.getBody().stream()
                 .map(productPriceMapper::tikiHttpReceptionToModel)
                 .collect(Collectors.toList());

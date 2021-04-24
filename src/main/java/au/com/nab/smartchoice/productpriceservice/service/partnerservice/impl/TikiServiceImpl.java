@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static au.com.nab.smartchoice.productpriceservice.utility.Constant.notFoundException;
+
 @Service("tikiService")
 @Slf4j
 @RequiredArgsConstructor
@@ -27,7 +29,7 @@ public class TikiServiceImpl implements TikiService {
         return tikiClientService.getProductPriceTiki(productId).stream()
                 .map(tikiProductPriceModel -> {
                     TikiProductMappingEntity tikiProductMappingEntity = tikiProductMappingRepository.findByTikiProductTypeId(tikiProductPriceModel.getProductTypeId())
-                            .orElseThrow();
+                            .orElseThrow(notFoundException("productId", tikiProductPriceModel.getProductTypeId()));
                     ProductPriceModel productPriceModel = new ProductPriceModel();
                     productPriceModel.setProductId(tikiProductMappingEntity.getProductId());
                     productPriceModel.setPartner(PartnerEnum.TIKI.getPartnerCode());

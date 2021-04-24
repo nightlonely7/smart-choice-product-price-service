@@ -19,12 +19,12 @@ public class ProductPriceTikiSyncScheduler {
         productPriceService.syncProductPrice(PartnerEnum.TIKI);
     }
 
-    @Scheduled(fixedRate = 30000)
+//    @Scheduled(fixedRate = 30000)
     public void syncProductLazada() {
         productPriceService.syncProductPrice(PartnerEnum.LAZADA);
     }
 
-    @Scheduled(fixedRate = 30000)
+//    @Scheduled(fixedRate = 30000)
     public void syncProductShopee() {
         productPriceService.syncProductPrice(PartnerEnum.SHOPEE);
     }

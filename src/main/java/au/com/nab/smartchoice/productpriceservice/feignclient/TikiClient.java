@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(contextId = "tiki-client", name = "tiki-client", url = "https://fd9f7ff2-cc9b-4a41-9eef-a1c991e9a390.mock.pstmn.io")
+@FeignClient(contextId = "tiki-client", name = "tiki-client", url = "https://b6fb7a85-482f-47c4-b689-09655f87a6bd.mock.pstmn.io")
 public interface TikiClient {
 
     @GetMapping("/products")
     ResponseEntity<List<TikiGetProductPriceHttpReception>> getProduct(@RequestHeader HttpHeaders httpHeaders,
-                                                                      @RequestParam("product_id") String productId);
+                                                                      @RequestParam("product-id") String productId);
 }
