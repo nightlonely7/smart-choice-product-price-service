@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ProductPriceTikiSyncScheduler {
+public class ProductPriceSyncScheduler {
 
     private final ProductPriceService productPriceService;
 

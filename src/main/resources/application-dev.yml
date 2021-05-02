@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: product-price-service-dev
+  config:
+    import: optional:configserver:http://localhost:8888
+  datasource:
+    generate-unique-name: false
+server:
+  port: 8081
