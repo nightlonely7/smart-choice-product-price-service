@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(contextId = "product-service", name = "product-service", url = "localhost:8080")
+@FeignClient(contextId = "product-service", name = "product-service")
 public interface ProductServiceClient {
 
     @GetMapping("/products/synchronizable")

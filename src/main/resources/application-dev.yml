@@ -1,9 +1,9 @@
 spring:
   application:
-    name: product-price-service-dev
+    name: product-price-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:http://host.docker.internal:8888
   datasource:
     generate-unique-name: false
 server:
-  port: 8081
+  port: 8082
